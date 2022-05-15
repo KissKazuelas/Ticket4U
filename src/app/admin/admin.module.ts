@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { UsersComponent } from './users/users.component';
 import { EventosComponent } from './pages/eventos/eventos.component';
 import { LugaresComponent } from './pages/lugares/lugares.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LugaresComponent } from './pages/lugares/lugares.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule
   ]
 })
 export class AdminModule { }
