@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { HomeComponent } from './pages/home/home.component';
-import { UsersComponent } from './users/users.component';
+import { UsersComponent } from './pages/users/users.component';
 import { EventosComponent } from './pages/eventos/eventos.component';
 import { LugaresComponent } from './pages/lugares/lugares.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class AdminModule { }
