@@ -1,0 +1,103 @@
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item pointer">
+        <a class="nav-link" [ngClass]="band ? 'active' : ''" (click)="templete(true)">Clientes</a>
+      </li>
+      <li class="nav-item pointer">
+        <a class="nav-link" [ngClass]="!band ? 'active' : ''" (click)="templete(false)">Empresas</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <div *ngIf="band else name">
+      <h5 class="card-title">Registro para clientes</h5>
+      <form (submit)="create($event)">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" placeholder="Nombre(s)">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="apellidos">Apellido(s)</label>
+            <input type="password" class="form-control" id="apellidos" placeholder="Apellido(s)">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="mail">Email</label>
+            <input type="password" class="form-control" id="mail" placeholder="Correo electronico">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="usuario">Usuario</label>
+            <input type="email" class="form-control" id="usuario" placeholder="Usuario">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Registrarme</button>
+      </form>
+    </div>
+    <ng-template #name>
+      <h5 class="card-title">Registro para empresas</h5>
+      <form (submit)="create($event)">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" placeholder="Nombre(s)">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="apellidos">Apellido(s)</label>
+            <input type="password" class="form-control" id="apellidos" placeholder="Apellido(s)">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="rfc">RFC</label>
+            <input type="text" class="form-control" id="rfc" placeholder="RFC">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="mail">Email</label>
+            <input type="password" class="form-control" id="mail" placeholder="Correo electronico">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="usuario">Usuario</label>
+            <input type="email" class="form-control" id="usuario" placeholder="Usuario">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="calle">Calle</label>
+            <input type="text" class="form-control" id="calle" placeholder="Calle">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" id="estado" placeholder="Estado">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="colonia">Colonia</label>
+            <input type="text" class="form-control" id="colonia" placeholder="Colonia">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cp">C.P</label>
+            <input type="text" class="form-control" id="cp" placeholder="Codigo Postal">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Registrarme</button>
+      </form>
+    </ng-template>
+
+  </div>
+</div>

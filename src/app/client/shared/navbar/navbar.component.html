@@ -5,17 +5,17 @@
             <div class="container-fluid octf-mainbar-container">
                 <div class="octf-mainbar">
                     <div class="octf-mainbar-row octf-row">
-                        <div class="octf-col logo-col no-padding">
+                        <div class="octf-col logo-col no-padding ml-3 mb-3">
                             <div id="site-logo" class="site-logo">
-                                <a href="index.html">
-                                    <img src="images/logo.svg" alt="Theratio" class="">
+                                <a routerLink="home">
+                                    <img src="../../../../assets/img/logo.png" class="w-50 h-50" alt="Theratio">
                                 </a>
                             </div>
                         </div>
                         <div class="octf-col menu-col no-padding">
                             <nav id="site-navigation" class="main-navigation">
                                 <ul class="menu">
-                                    <li class="menu-item-has-children current-menu-item current-menu-ancestor"><a routerLink="home">Inicio</a></li>
+                                    <li><a routerLink="home">Inicio</a></li>
                                     <!-- <li class="menu-item-has-children"><a href="#">Eventos</a>
                                         <ul class="sub-menu">
                                             <li><a href="about-us.html">About Us</a></li>
@@ -23,6 +23,7 @@
                                         </ul>
                                     </li> -->
                                     <li><a routerLink="eventos">Eventos</a></li>
+                                    <li><a routerLink="contacto">Contacto</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -31,15 +32,14 @@
                             <div class="octf-btn-cta">
                                 <div class="octf-cart octf-cta-header">
                                     <a class="cart-contents" title="View your shopping cart">
-                                        <i class="ot-flaticon-shopping-bag"></i>
-                                        <span class="count">2</span>
+                                        <i class="fa-solid fa-user"></i>
                                     </a>
                                     <div class="site-header-cart">
                                         <div class="widget woocommerce widget_shopping_cart">
                                             <div class="widget_shopping_cart_content">
                                                 <p class="woocommerce-mini-cart__buttons buttons">
-                                                    <a routerLink="/auth/login" class="button wc-forward">Login</a>
-                                                    <a routerLink="/auth/register" class="button checkout wc-forward">Registrar</a>
+                                                    <a routerLink="/auth/login" class="button checkout wc-forward">Login</a>
+                                                    <a routerLink="/auth/registro" class="button checkout wc-forward">Registrar</a>
                                                 </p>
                                             </div>
                                         </div>
