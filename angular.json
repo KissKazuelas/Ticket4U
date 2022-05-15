@@ -29,7 +29,14 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/core/jquery.3.2.1.min.js",
+              "src/assets/js/core/popper.min.js",
+              "src/assets/js/core/bootstrap.min.js",
+              "src/assets/js/plugins/bootstrap-switch.js",
+              "src/assets/js/light-bootstrap-dashboard.js",
+              "src/assets/js/plugins/bootstrap-notify.js"
+            ]
           },
           "configurations": {
             "production": {
