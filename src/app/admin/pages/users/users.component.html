@@ -1,0 +1,107 @@
+
+<div class="card" *ngIf="$users | async as users1">
+    <p-table [value]="users1.usersList">
+    <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="userName">UserName<p-sortIcon field="userName"></p-sortIcon></th>
+                <th pSortableColumn="mail">Email<p-sortIcon field="mail"></p-sortIcon></th>
+                <th >Edit</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr [ngClass]="{'bg-danger':user.status == false}">
+                <td>{{user.userName}}</td>
+                <td>{{user.mail}}</td>
+                <td >
+                    <a (click)="toogleUSer(user._id,user.status)">
+                        <i class="mr-2 nc-icon nc-tap-01"></i>
+                    </a>
+                    <a (click)="updateUser(update,user._id)" >
+                        <i class="nc-icon nc-settings-gear-64"></i>
+                    </a>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<ng-template #update>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Editar</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-xlg mt-3">
+        <div class="row mb-4">
+            <div class="col-6">
+                <span class="p-float-label">
+                    <input id="float-input" type="text" pInputText [(ngModel)]="selectUser.nombre"> 
+                    <label for="float-input">Nombre</label>
+                </span>
+            </div>
+            <div class="col-6">
+                <span class="p-float-label">
+                    <input id="float-input" type="text" pInputText [(ngModel)]="selectUser.apellido"> 
+                    <label for="float-input">Apellido</label>
+                </span>
+            </div>
+        </div>
+        <ng-container *ngIf="selectUser.rol=='BUSINESS'" class="container mt-2">
+            <div class="row mb-4">
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectUser.calle"> 
+                        <label for="float-input">Calle</label>
+                    </span>
+                </div>
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="number" pInputText [(ngModel)]="selectUser.codigoPostal"> 
+                        <label for="float-input">Codigo Postal</label>
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectUser.ciudad"> 
+                        <label for="float-input">Ciudad</label>
+                    </span>
+                </div>
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectUser.estado"> 
+                        <label for="float-input">Estado</label>
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectUser.colonia"> 
+                        <label for="float-input">Colonia</label>
+                    </span>
+                </div>
+                <div class="col">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectUser.RFC"> 
+                        <label for="float-input">RFC</label>
+                    </span>
+                </div>
+            </div>
+        </ng-container>
+        <div class="container m-3">
+            <form >
+                <div class="row justify-content-end mr-1">
+                    <button (click)="modalRef?.hide()" class="col-3 mr-1 btn btn-danger">
+                        Cancelar
+                    </button>
+                    <button (click)="confirmUpdate()" class="col-3 btn btn-success" >
+                        Crear
+                    </button>
+                </div>
+            </form>
+        </div>
+      </div>
+</ng-template>
