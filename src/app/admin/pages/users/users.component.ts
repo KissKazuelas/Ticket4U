@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService,
     private accountService: AccountService,
     private modalService: BsModalService) {
-    localStorage.setItem('jwt', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTI1ODc3Njd9.FY-WojVS8aeVW0o8QFjV1Ip4_nrC1TDtCcchIfE_43A')
+    localStorage.setItem('jwt', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTM1MjM4MzR9.3JccMEtGixnIQZNaCEXhx9wqs3WQwsidMXZrwiyukLw')
   }
 
   ngOnInit(): void {
@@ -53,9 +53,10 @@ export class UsersComponent implements OnInit {
     })
   }
   confirmUpdate() {
-    this.userService.updateUser(this.jwt?this.jwt:'',this.selectUser,this.selectUser.rol=='CUSOTMER')
+    this.userService.updateUser(this.jwt?this.jwt:'',this.selectUser,this.selectUser.rol=='CUSTOMER')
     .subscribe(res=>{
       console.log(res);
+      this.modalRef?.hide();
     }) 
   }
   closeModal(){
