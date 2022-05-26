@@ -10298,7 +10298,9 @@ ul.style-default li:last-child, ol.style-default li:last-child {
 
 /* #Contact form
 ================================================== */
- 
+ .fsn{
+   font-style: normal;
+ }
 #ajax-form label {
   display: block;
   font-family: 'Raleway', sans-serif;

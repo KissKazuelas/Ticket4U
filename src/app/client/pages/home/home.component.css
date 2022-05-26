@@ -7977,7 +7977,7 @@ ul.style-default li:last-child, ol.style-default li:last-child {
     background: #F5592F;
 }
 .cta {
-    background-image: url(https://via.placeholder.com/1820x325.png);
+    background-image: url("../../../../assets/img/slide2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     padding: 70px 0 73px 0;
@@ -8399,7 +8399,7 @@ ul.style-default li:last-child, ol.style-default li:last-child {
     color: #9F9E9E;
 }
 .story-1 {
-    background-image: url(https://via.placeholder.com/1920x1080.png);
+    background-image: url("../../../../assets/img/slider.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
