@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    let jwt = localStorage.getItem('jwt');
+    if(jwt){
+      this.logged = true;
+    }
+  }
+
+  logged : boolean = false;
 
   ngOnInit(): void {
   }

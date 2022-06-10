@@ -12,91 +12,91 @@
   <div class="card-body">
     <div *ngIf="band else name">
       <h5 class="card-title">Registro para clientes</h5>
-      <form (submit)="create($event)">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="name">Nombre</label>
-            <input type="text" class="form-control" id="name" placeholder="Nombre(s)">
+            <input type="text" class="form-control" id="name" placeholder="Nombre(s)" [(ngModel)]="user.nombre">
           </div>
           <div class="form-group col-md-6">
             <label for="apellidos">Apellido(s)</label>
-            <input type="password" class="form-control" id="apellidos" placeholder="Apellido(s)">
+            <input type="text" class="form-control" id="apellidos" placeholder="Apellido(s)" [(ngModel)]="user.apellido">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="mail">Email</label>
-            <input type="password" class="form-control" id="mail" placeholder="Correo electronico">
+            <input type="mail" class="form-control" id="mail" placeholder="Correo electronico" [(ngModel)]="user.e_mail">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="usuario">Usuario</label>
-            <input type="email" class="form-control" id="usuario" placeholder="Usuario">
+            <input type="text" class="form-control" id="usuario" placeholder="Usuario" [(ngModel)]="user.username">
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Password" [(ngModel)]="user.password">
           </div>
         </div>
-        <button type="submit" class="btn btn-success">Registrarme</button>
-      </form>
+        <button type="submit" class="btn btn-success" (click)="createUser()">Registrarme</button>
     </div>
     <ng-template #name>
       <h5 class="card-title">Registro para empresas</h5>
-      <form (submit)="create($event)">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="name">Nombre</label>
-            <input type="text" class="form-control" id="name" placeholder="Nombre(s)">
+            <input type="text" class="form-control" id="name" placeholder="Nombre(s)" [(ngModel)]="businessman.nombre">
           </div>
           <div class="form-group col-md-6">
             <label for="apellidos">Apellido(s)</label>
-            <input type="password" class="form-control" id="apellidos" placeholder="Apellido(s)">
+            <input type="text" class="form-control" id="apellidos" placeholder="Apellido(s)" [(ngModel)]="businessman.apellido">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="rfc">RFC</label>
-            <input type="text" class="form-control" id="rfc" placeholder="RFC">
+            <input type="text" class="form-control" id="rfc" placeholder="RFC" [(ngModel)]="businessman.RFC">
           </div>
           <div class="form-group col-md-6">
             <label for="mail">Email</label>
-            <input type="password" class="form-control" id="mail" placeholder="Correo electronico">
+            <input type="text" class="form-control" id="mail" placeholder="Correo electronico" [(ngModel)]="businessman.e_mail">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="usuario">Usuario</label>
-            <input type="email" class="form-control" id="usuario" placeholder="Usuario">
+            <input type="text" class="form-control" id="usuario" placeholder="Usuario" [(ngModel)]="businessman.username">
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Password"  [(ngModel)]="businessman.password">
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-6">
             <label for="calle">Calle</label>
-            <input type="text" class="form-control" id="calle" placeholder="Calle">
+            <input type="text" class="form-control" id="calle" placeholder="Calle" [(ngModel)]="businessman.calle">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="calle">Ciudad</label>
+            <input type="text" class="form-control" id="ciudad" placeholder="Ciudad" [(ngModel)]="businessman.ciudad">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="estado">Estado</label>
-            <input type="text" class="form-control" id="estado" placeholder="Estado">
+            <input type="text" class="form-control" id="estado" placeholder="Estado" [(ngModel)]="businessman.estado">
           </div>
           <div class="form-group col-md-4">
             <label for="colonia">Colonia</label>
-            <input type="text" class="form-control" id="colonia" placeholder="Colonia">
+            <input type="text" class="form-control" id="colonia" placeholder="Colonia" [(ngModel)]="businessman.colonia">
           </div>
           <div class="form-group col-md-2">
             <label for="cp">C.P</label>
-            <input type="text" class="form-control" id="cp" placeholder="Codigo Postal">
+            <input type="number" class="form-control" id="cp" placeholder="Codigo Postal" [(ngModel)]="businessman.codigoPostal">
           </div>
         </div>
-        <button type="submit" class="btn btn-success">Registrarme</button>
-      </form>
+        <button type="submit" class="btn btn-success" (click)="createBusinessman()">Registrarme</button>
     </ng-template>
 
   </div>
