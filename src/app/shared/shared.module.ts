@@ -7,6 +7,9 @@ import {TableModule} from 'primeng/table';
 import { ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {InputTextModule} from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   imports: [
@@ -17,7 +20,11 @@ import {InputTextModule} from 'primeng/inputtext';
     MatSliderModule,
     TableModule,
     ModalModule,
-    MatFormFieldModule,InputTextModule
+    MatFormFieldModule,
+    InputTextModule,
+    CalendarModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [BsModalService]
 })
