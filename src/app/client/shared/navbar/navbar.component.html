@@ -34,12 +34,22 @@
                                     <a class="cart-contents" title="View your shopping cart">
                                         <i class="fa-solid fa-user fsn text-white"></i>
                                     </a>
-                                    <div class="site-header-cart">
+                                    <div *ngIf="!logged" class="site-header-cart">
                                         <div class="widget woocommerce widget_shopping_cart">
                                             <div class="widget_shopping_cart_content">
                                                 <p class="woocommerce-mini-cart__buttons buttons">
                                                     <a routerLink="/auth/login" class="button checkout wc-forward">Login</a>
                                                     <a routerLink="/auth/registro" class="button checkout wc-forward">Registrar</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div *ngIf="logged" class="site-header-cart">
+                                        <div class="widget woocommerce widget_shopping_cart">
+                                            <div class="widget_shopping_cart_content">
+                                                <p class="woocommerce-mini-cart__buttons buttons">
+                                                    <a routerLink="/auth/login" class="button checkout wc-forward">Ajustes</a>
+                                                    <a routerLink="/auth/registro" class="button checkout wc-forward">Log out</a>
                                                 </p>
                                             </div>
                                         </div>
