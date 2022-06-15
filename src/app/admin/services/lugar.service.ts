@@ -31,10 +31,11 @@ import { User } from '../models/users.models';
     getSingleLugar(jwt: string,uid_lugar: string) : Observable <any>{
       return  this.http.post<any>(`${this.url}/lugar/get_lugar`,{uid_lugar});
     }
-    
-  
-    /*
-    
+
+    reportePDF(id:string) : Observable <any>{
+      return  this.http.post<any>(`${this.url}/user/get_reporte_lugares`,{ "lugar_uid":id});
+    }
+
     getLugar(jwt: string,uid_: string) : Observable <any>{
       return  this.http.post<any>(`${this.url}/user/get_single_user`,{jwt,uid_usr});
     }
