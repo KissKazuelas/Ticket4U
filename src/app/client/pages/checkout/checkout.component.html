@@ -1,0 +1,145 @@
+<div id="content" class="site-content">
+    <div class="page-header dtable text-center header-transparent pheader-faq">
+        <div class="dcell">
+            <div class="container">
+                <h1 class="page-title">Checkout</h1>
+                <ul id="breadcrumbs" class="breadcrumbs none-style">
+                    <li><a routerLink="/">Home</a></li>
+                    <li class="active">Checkout</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="shop-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="order_review_heading">Resumen de tu compra</h3>
+                <ng-template [ngIf]="band" [ngIfElse]="empty">
+                    <table class="shop_table woocommerce-checkout-review-order-table">
+                        <thead>
+                            <tr>
+                                <th class="product-name">Producto</th>
+                                <th class="product-name">Cantidad</th>
+                                <th class="product-total">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_item" *ngFor="let boleto of boletosCompra">
+                                <td class="product-name">{{boleto.nombreEvento}} | {{boleto.nombreSeccion}}</td>
+                                <td class="product-name"><strong class="product-quantity">× {{boleto.cantidad}}</strong>
+                                </td>
+                                <td class="product-total"><span class="amount">{{boleto.total | currency}}</span></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="cart-subtotal">
+                                <th colspan="2">Subtotal</th>
+                                <td>{{total | currency}}</td>
+                            </tr>
+                            <tr class="cart-subtotal">
+                                <th colspan="2">IVA</th>
+                                <td>{{total*0.16 | currency}}</td>
+                            </tr>
+                            <tr class="order-total">
+                                <th colspan="2">Total</th>
+                                <td>{{total*1.16 | currency}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <section class="py-2">
+                        <div class="row">
+                            <div class="col-md-8 mb-4">
+                                <div class="card mb-4">
+                                    <div class="card-header py-3">
+                                        <h5 class="mb-0">Detalles de pago</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <!-- 2 column grid layout with text inputs for the first and last names -->
+                                            <div class="row mb-4">
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="titular" class="form-control" placeholder="Nombre(s)"/>
+                                                        <label class="form-label" for="titular">Nombre del titular</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="apellitos" class="form-control" placeholder="Apellido(s)"/>
+                                                        <label class="form-label" for="apellidos">Apellidos</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Text input -->
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="address" class="form-control" placeholder="Dirección"/>
+                                                <label class="form-label" for="address">Dirección</label>
+                                            </div>
+                                            <hr class="my-4" />
+
+                                            <h5 class="mb-4">Payment</h5>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                    id="checkoutForm3" checked />
+                                                <label class="form-check-label" for="checkoutForm3">
+                                                    Credit card
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                    id="checkoutForm4" />
+                                                <label class="form-check-label" for="checkoutForm4">
+                                                    Debit card
+                                                </label>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="formCardNumber" class="form-control" placeholder="0000 0000 0000 0000"/>
+                                                        <label class="form-label" for="formCardNumber">Número de tarjeta</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="formExpiration" class="form-control" />
+                                                        <label class="form-label"
+                                                            for="formExpiration">Expira</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="formCVV" class="form-control" />
+                                                        <label class="form-label" for="formCVV">CVV</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </ng-template>
+                <ng-template #empty>
+                    <h3>No tienes elementos en el carrito.</h3>
+                </ng-template>
+                <div id="payment" class="woocommerce-checkout-payment">
+                    <div class="place-order text-right">
+                        <button type="button" class="octf-btn button alt bg-danger mr-3"
+                            name="woocommerce_checkout_place_order" id="place_order" value="Place order"
+                            data-value="Place order" (click)="VaciaCarrito()">Vaciar Carrito</button>
+                        <button type="button" class="octf-btn button alt" name="woocommerce_checkout_place_order"
+                            id="place_order" value="Place order" data-value="Place order">Comprar ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

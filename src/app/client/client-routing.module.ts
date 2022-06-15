@@ -4,6 +4,9 @@ import { EventosComponent } from './pages/eventos/eventos.component';
 import { ClientComponent } from './client.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { AccountComponent } from './pages/account/account.component';
+import { EventoComponent } from './pages/evento/evento.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 const routes : Routes = [
   {
@@ -21,6 +24,18 @@ const routes : Routes = [
       {
         path: 'contacto',
         component: ContactoComponent
+      },
+      {
+        path: 'cuenta',
+        component: AccountComponent
+      },
+      {
+        path: 'eventos/:id',
+        component: EventoComponent
+      },
+      {
+        path: 'checkout',
+        component: CheckoutComponent
       },
       {
         path: '**',

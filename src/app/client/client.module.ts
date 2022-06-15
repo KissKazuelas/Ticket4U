@@ -7,6 +7,11 @@ import { ClientComponent } from './client.component';
 import { HomeComponent } from './pages/home/home.component';
 import { EventosComponent } from './pages/eventos/eventos.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { AccountComponent } from './pages/account/account.component';
+import { EventoComponent } from './pages/evento/evento.component';
+import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -18,11 +23,16 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
        ClientComponent,
        HomeComponent,
        EventosComponent,
-       ContactoComponent
+       ContactoComponent,
+       CheckoutComponent,
+       AccountComponent,
+       EventoComponent
   ],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    SharedModule,
+    FormsModule
   ]
 })
 export class ClientModule { }

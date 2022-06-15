@@ -429,7 +429,7 @@ p {
 }
 
 dfn, cite, em, i {
-  font-style: italic;
+  font-style: inherit;
 }
 
 blockquote {
@@ -7291,7 +7291,7 @@ section {
 .contact-right {
     padding-left: 75px;
     padding-right: 40px;
-    background-image: url('https://via.placeholder.com/510x680.png');
+    background-image: url('../../../../assets/img/full-screen-image-3.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7599,7 +7599,7 @@ section {
     z-index: 1;
 }
 .team-member-info {
-    background-image: url(https://via.placeholder.com/770x485.png);
+    background-image: url(http://templates.thememodern.com/theratio/images/bg/bg1-single-team.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

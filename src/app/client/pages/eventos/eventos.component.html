@@ -1,1 +1,37 @@
-<p>eventos works!</p>
+<div id="content" class="site-content">
+    <div class="page-header dtable text-center header-transparent pheader-portfolio">
+        <div class="dcell">
+            <div class="container">
+                <h1 class="page-title">Nuestros eventos</h1>
+                <ul id="breadcrumbs" class="breadcrumbs none-style">
+                    <li><a routerLink="">Inicio</a></li>
+                    <li class="active">Eventos</li>
+                </ul>    
+            </div>
+        </div>
+    </div>
+</div>
+<section class="our-portfolio">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-center theratio-align-center">
+                <div class="ot-heading is-dots">
+                    <span>[ Eventos ]</span>
+                    <h2 class="main-heading">Nuestros eventos<br>  Todos los eventos</h2>
+                </div>
+                <div class="space-40"></div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4" *ngFor="let evento of eventos">
+                        <div class="card">
+                            <a routerLink="/eventos/{{evento._id}}" [queryParams]="{id: evento._id,nombre: evento.nombreEvento,fecha: evento.fecha, listaDeSecc: evento.listaDeSecc|json|json}"><img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg"></a>
+                            <div class="card-content">
+                                <a routerLink="/eventos/{{evento._id}}" [queryParams]="{id: evento._id,nombre: evento.nombreEvento,fecha: evento.fecha, listaDeSecc: evento.listaDeSecc|json|json}"><h4 class=" text-center">{{evento.nombreEvento}}</h4></a>
+                                <p>{{evento.fecha | date }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
