@@ -24,7 +24,7 @@ export class UserService {
   }
   
   updateUser(jwt: string, user: User,isCustomer : boolean): Observable <any>{
-    return  this.http.put<any>(`${this.url}/user/edit_user`,{jwt,...user,isCustomer});
+    return  this.http.put<any>(`${this.url}/user/edit_user`,{jwt, uid_user:user._id,...user,isCustomer});
   }
   
 

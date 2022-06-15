@@ -26,7 +26,6 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService,
     private accountService: AccountService,
     private modalService: BsModalService) {
-    localStorage.setItem('jwt', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTM1MjM4MzR9.3JccMEtGixnIQZNaCEXhx9wqs3WQwsidMXZrwiyukLw')
   }
 
   ngOnInit(): void {
@@ -40,7 +39,6 @@ export class UsersComponent implements OnInit {
       .subscribe(res => {
         this.$userRefresh.next('');
       })
-
   }
   refreshUsers() {
     this.$userRefresh.next('');
