@@ -24,7 +24,6 @@
                 <tr>
                     <td>{{evento.nombreEvento}}</td>
                     <td>{{evento.fecha | date}}</td>
-                    <td>{{evento._id}}</td>
                     <td *ngIf="evento.status!='ACTIVE'">
                         <a [routerLink]="['../eventos',evento._id]">
                             Se requiere completar informacion
@@ -32,10 +31,11 @@
                         </a> 
                     </td>
                     <td *ngIf="evento.status=='ACTIVE'">
-                            <i class="pi pi-check"></i>
+                            <i  class="pi pi-check"></i>
                     </td>
-                    <td>
-                        <i (click)="exportExcel(evento._id)" class="pi pi-file"></i>
+                    <td *ngIf="evento.status=='ACTIVE'">
+                           
+                            <i (click)="exportExcel(evento._id)" class="pi pi-file"></i>
                     </td>
                     <!-- <td>{{user.mail}}</td> -->
                     <!-- <td> -->
