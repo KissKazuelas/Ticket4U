@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-4" *ngFor="let evento of eventos">
                         <div class="card">
-                            <a routerLink="/eventos/{{evento._id}}" [queryParams]="{id: evento._id,nombre: evento.nombreEvento,fecha: evento.fecha, listaDeSecc: evento.listaDeSecc|json|json}"><img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg"></a>
+                            <a routerLink="/eventos/{{evento._id}}" [queryParams]="{id: evento._id,nombre: evento.nombreEvento,fecha: evento.fecha, listaDeSecc: evento.listaDeSecc|json|json}"><img src="https://images.pexels.com/photos/433452/pexels-photo-433452.jpeg?auto=compress&cs=tinysrgb&w=600"></a>
                             <div class="card-content">
                                 <a routerLink="/eventos/{{evento._id}}" [queryParams]="{id: evento._id,nombre: evento.nombreEvento,fecha: evento.fecha, listaDeSecc: evento.listaDeSecc|json|json}"><h4 class=" text-center">{{evento.nombreEvento}}</h4></a>
                                 <p>{{evento.fecha | date }}</p>

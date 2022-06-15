@@ -28,6 +28,9 @@ import { User } from '../models/users.models';
     toggleLugar(jwt: string,uid_user: string,status: boolean) : Observable <any>{
       return  this.http.delete<any>(`${this.url}/user/delete_user`,{ body: {jwt,status}});
     }
+    reportePDF(id:string) : Observable <any>{
+      return  this.http.post<any>(`${this.url}/user/get_reporte_lugares`,{ "lugar_uid":id});
+    }
     /*
     
     getLugar(jwt: string,uid_: string) : Observable <any>{
