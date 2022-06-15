@@ -36,7 +36,7 @@
                         <tfoot>
                             <tr class="cart-subtotal">
                                 <th colspan="2">Subtotal</th>
-                                <td>{{total | currency}}</td>
+                                <td>{{total-total*0.16| currency}}</td>
                             </tr>
                             <tr class="cart-subtotal">
                                 <th colspan="2">IVA</th>
@@ -44,83 +44,34 @@
                             </tr>
                             <tr class="order-total">
                                 <th colspan="2">Total</th>
-                                <td>{{total*1.16 | currency}}</td>
+                                <td>{{total | currency}}</td>
                             </tr>
                         </tfoot>
                     </table>
                     <section class="py-2">
                         <div class="row">
-                            <div class="col-md-8 mb-4">
+                            <div class="col-md-12 mb-4">
                                 <div class="card mb-4">
                                     <div class="card-header py-3">
                                         <h5 class="mb-0">Detalles de pago</h5>
                                     </div>
-                                    <div class="card-body">
-                                        <form>
-                                            <!-- 2 column grid layout with text inputs for the first and last names -->
-                                            <div class="row mb-4">
-                                                <div class="col">
-                                                    <div class="form-outline">
-                                                        <input type="text" id="titular" class="form-control" placeholder="Nombre(s)"/>
-                                                        <label class="form-label" for="titular">Nombre del titular</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="form-outline">
-                                                        <input type="text" id="apellitos" class="form-control" placeholder="Apellido(s)"/>
-                                                        <label class="form-label" for="apellidos">Apellidos</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Text input -->
-                                            <div class="form-outline mb-4">
-                                                <input type="text" id="address" class="form-control" placeholder="Dirección"/>
-                                                <label class="form-label" for="address">Dirección</label>
-                                            </div>
-                                            <hr class="my-4" />
-
-                                            <h5 class="mb-4">Payment</h5>
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="checkoutForm3" checked />
-                                                <label class="form-check-label" for="checkoutForm3">
-                                                    Credit card
-                                                </label>
-                                            </div>
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="checkoutForm4" />
-                                                <label class="form-check-label" for="checkoutForm4">
-                                                    Debit card
-                                                </label>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col">
-                                                    <div class="form-outline">
-                                                        <input type="text" id="formCardNumber" class="form-control" placeholder="0000 0000 0000 0000"/>
-                                                        <label class="form-label" for="formCardNumber">Número de tarjeta</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-3">
-                                                    <div class="form-outline">
-                                                        <input type="text" id="formExpiration" class="form-control" />
-                                                        <label class="form-label"
-                                                            for="formExpiration">Expira</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-3">
-                                                    <div class="form-outline">
-                                                        <input type="text" id="formCVV" class="form-control" />
-                                                        <label class="form-label" for="formCVV">CVV</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
+                                    <div class="card-body ml-3 py-4">
+                                        <div class="col-6">
+                                            <label for="metodoPago">Metodo de pago:</label>
+                                            <select id="metodoPago" class="form-control" [(ngModel)]="idMP">
+                                                <option selected disabled>Selecciona una opcion</option>
+                                                <option *ngFor="let metodo of metodosPago" [ngValue]="metodo._id">
+                                                    {{metodo.banco}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 mt-3">
+                                            <label for="metodoPago">Dato de facturación:</label>
+                                            <select id="metodoPago" class="form-control" [(ngModel)]="idDF">
+                                                <option selected disabled>Selecciona una opcion</option>
+                                                <option *ngFor="let dato of datosFacturacion" [ngValue]="dato._id">
+                                                    {{dato.nombre}} | {{dato.calle}}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +87,7 @@
                             name="woocommerce_checkout_place_order" id="place_order" value="Place order"
                             data-value="Place order" (click)="VaciaCarrito()">Vaciar Carrito</button>
                         <button type="button" class="octf-btn button alt" name="woocommerce_checkout_place_order"
-                            id="place_order" value="Place order" data-value="Place order">Comprar ahora</button>
+                            id="place_order" value="Place order" data-value="Place order" (click)="CreateBoletos()">Comprar ahora</button>
                     </div>
                 </div>
             </div>
