@@ -6,4 +6,6 @@ export class Lugar{
     estado?:           string;
     status?: boolean;
     jwt : string | null=null;
+    lugar_uid?: string;
+ // rol: string;
 }
