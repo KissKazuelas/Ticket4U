@@ -49,8 +49,8 @@
         <div class="row pt-4 mt-5">
             <div class="row">
                 <h3 class="col-8">Métodos de pago</h3>
-                <button type="button" class="btn btn-sm btn-success w-25 ml-auto text-white col-2 h-75" (click)="showDialog()"
-                    label="Show"><i class="pi pi-plus"></i>Agregar Nuevo</button>
+                <button type="button" class="btn btn-sm btn-success w-25 ml-auto text-white col-2 h-75"
+                    (click)="showDialog()" label="Show"><i class="pi pi-plus"></i>Agregar Nuevo</button>
             </div>
             <div class="row mt-3 py-3" *ngIf="$metodos | async as cards">
                 <div class="col-xs-12 col-sm-4" *ngFor="let card of cards.metodPago">
@@ -70,28 +70,50 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-sm bg-danger text-white" (click)="DeleteMetodoPago(card._id)"><i class="pi pi-trash"></i>Eliminar</button>
+                        <button class="btn btn-sm bg-danger text-white" (click)="DeleteMetodoPago(card._id)"><i
+                                class="pi pi-trash"></i>Eliminar</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row pt-4 mt-5">
             <h3>Datos Facturación</h3>
-            <button type="button" class="btn btn-sm btn-success w-25 ml-auto text-white" (click)="showDialog()"
+            <button type="button" class="btn btn-sm btn-success w-25 ml-auto text-white" (click)="showDialogFac()"
                 label="Show"><i class="pi pi-plus"></i>Agregar Nuevo</button>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 mt-3 pt-2" *ngFor="let card of metodosPago">
+            <div class="row py-3 mt-3" *ngIf="$metodosFac | async as datosFac">
+                <div class="col-xs-12 col-sm-12 mt-3 pt-2" *ngFor="let dato of datosFac.datos_fact">
+                    <div *ngIf="dato.status">
+                        <div class="card text-center">
+                            <div class="card-header">Dato de Facturación</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{dato.nombre}}</h5>
+                                <span class="card-text col-6">Razón Social: {{dato.razonSocial}}</span>
+                                <span class="card-text col-6">Calle: {{dato.calle}}</span>
+                                <span class="card-text col-6">Codigo Postal: {{dato.codigoPostal}}</span>
+                                <span class="card-text col-6">Colonia: {{dato.colonia}}</span>
+                                <span class="card-text col-6">RFC: {{dato.RFC}}</span>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Código Postal: {{dato.codigoPostal}}
+                            </div>
+                            <button class="btn btn-sm bg-danger text-white" (click)="DeleteDatoFac(dato._id)"><i
+                                    class="pi pi-trash"></i>Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4 mt-5">
+            <h3>Tus Boletos</h3>
+            <div class="row py-3 mt-3">
+                <div class="col-xs-3 col-sm-3 mt-3 pt-2" *ngFor="let boleto of boletos">
                     <div class="card text-center">
-                        <div class="card-header">Dato de Facturación</div>
+                        <div class="card-header">Boleto Adquirido</div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Número de asiento: {{boleto.num_asiento}}</h5>
                         </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
+                        <button class="btn btn-sm bg-success text-white" (click)="ReportePDF(boleto._id!)"><i
+                                class="pi pi-file-pdf"></i>Descargar</button>
                     </div>
                 </div>
             </div>
@@ -99,7 +121,7 @@
     </div>
 </div>
 
-<p-dialog [(visible)]="display" [style]="{width: '50vw'}">
+<p-dialog [(visible)]="displayPago" [style]="{width: '50vw'}">
     <ng-template pTemplate="header" class="text-center">
         Nuevo método de pago.
     </ng-template>
@@ -121,8 +143,59 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <button (click)="display=false" class="btn btn-sm btn-danger text-white">Cerrar</button>
+        <button (click)="displayPago=false" class="btn btn-sm btn-danger text-white">Cerrar</button>
         <button (click)="CrearMetodoPago()" class="btn btn-sm btn-success text-white">Registrar</button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="displayFac" [style]="{width: '50vw'}">
+    <ng-template pTemplate="header" class="text-center">
+        Nuevo dato de facturación.
+    </ng-template>
+    <div class="row border-top pt-4">
+        <div class="col-6">
+            <label for="card" class="form-label">Nombre</label>
+            <input type="text" id="card" class="form-control" placeholder="Nombre" [(ngModel)]="datoFacturacion.nombre">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Régimen Fiscal</label>
+            <input type="text" id="card" class="form-control" placeholder="Régimen Fiscal"
+                [(ngModel)]="datoFacturacion.regimenFiscal">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Calle</label>
+            <input type="text" id="card" class="form-control" placeholder="Calle" [(ngModel)]="datoFacturacion.calle">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Colonia</label>
+            <input type="text" id="card" class="form-control" placeholder="Colonia"
+                [(ngModel)]="datoFacturacion.colonia">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Ciudad</label>
+            <input type="text" id="card" class="form-control" placeholder="Ciudad" [(ngModel)]="datoFacturacion.ciudad">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Estado</label>
+            <input type="text" id="card" class="form-control" placeholder="Estado" [(ngModel)]="datoFacturacion.estado">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Codigo Postal</label>
+            <input type="text" id="card" class="form-control" placeholder="C.P."
+                [(ngModel)]="datoFacturacion.codigoPostal">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">RFC</label>
+            <input type="text" id="card" class="form-control" placeholder="RFC" [(ngModel)]="datoFacturacion.RFC">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Razón Social</label>
+            <input type="text" id="card" class="form-control" placeholder="Razón Social"
+                [(ngModel)]="datoFacturacion.razonSocial">
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button (click)="displayFac=false" class="btn btn-sm btn-danger text-white">Cerrar</button>
+        <button (click)="CrearDatoFac()" class="btn btn-sm btn-success text-white">Registrar</button>
     </ng-template>
 </p-dialog>
 <p-toast></p-toast>
