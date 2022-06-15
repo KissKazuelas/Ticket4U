@@ -21,6 +21,11 @@
                 <td>{{lugar.ciudad}}</td>
                 <td>{{lugar.calle}}</td>
                 <td>{{lugar.estado}}</td>
+                <td >
+                <a  (click)="updateLugar(update,lugar._id)">
+                        <i class="nc-icon nc-settings-gear-64"></i>
+                    </a>
+                </td>
                
             </tr>
                    
@@ -30,6 +35,7 @@
     <button (click)="createLugar(create)">Agregar</button>
 
 </div>
+
 
 <ng-template #create>
     <div class="modal-header">
@@ -77,8 +83,85 @@
                 </div>
             </form>
         </div>
+
+
         </div>        
-</ng-template>      
+
+
+       
+
+
+
+
+
+    </ng-template>      
+
+    <ng-template #update>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Editar</h4>
+            <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+              <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body modal-xlg mt-3">
+            <div class="row mb-4">
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectLugar.nombre"> 
+                        <label for="float-input">Nombre</label>
+                    </span>
+                </div>
+                <br>
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectLugar.estado"> 
+                        <label for="float-input">Estado</label>
+                    </span>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectLugar.ciudad"> 
+                        <label for="float-input">Ciudad</label>
+                    </span>   
+                </div>
+
+                <div class="col-6">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText [(ngModel)]="selectLugar.calle"> 
+                        <label for="float-input">Calle</label>
+                    </span>
+                </div>
+
+                <div class="col-6">
+                    <span class="p-float-label">
+                       <label for="float-input">Delate</label>
+                        <br>
+                        <input type="checkbox"  id="float-input"[(ngModel)]="selectLugar.status" > 
+                     
+                    </span>
+                </div>
+
+
+            </div>
+            
+           
+            
+            <div class="container m-3">
+                <form >
+                    <div class="row justify-content-end mr-1">
+                        <button (click)="modalRef?.hide()" class="col-3 mr-1 btn btn-danger">
+                            Cancelar
+                        </button>
+                        <button (click)="confirmUpdate()" class="col-3 btn btn-success" >
+                            Actualizar
+                        </button>
+                    </div>
+                </form>
+            </div>
+          </div>   
 
 
 

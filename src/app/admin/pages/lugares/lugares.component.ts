@@ -22,8 +22,13 @@ export class LugaresComponent implements OnInit {
  $lugarRefresh = new BehaviorSubject('');
  selectLugar: Lugar = new Lugar();
 
+
+ status : boolean = true;
+
  //Modal
  modalRef?: BsModalRef;
+  $userRefresh: any;
+  selectUser: any;
 
  constructor(private lugarService: LugarService,
    private accountService: AccountService,
@@ -38,14 +43,28 @@ export class LugaresComponent implements OnInit {
      switchMap(() => this.lugarService.getLugares(this.jwt ? this.jwt : ''))
    )
  }
+
  /*
- toogleUSer(id: string, status: boolean) {
-   this.lugarService.toggleUser(this.jwt ? this.jwt : '', id, !status)
+ 
+ toogleLugar(id: string, status: boolean) {
+   this.lugarService.toggleLugar(this.jwt ? this.jwt : '', id, !status)
      .subscribe(res => {
        this.$userRefresh.next('');
      })
 
- }*/
+ }
+*/ 
+ updateLugar(template: TemplateRef<any>, id: string) {
+  this.lugarService.getSingleLugar(this.jwt ? this.jwt : '',id)
+  .subscribe(res => {
+    this.selectLugar=res.lugar;
+    this.selectLugar.lugar_uid=res.lugar._id;
+    console.log(this.selectLugar);
+    this.modalRef = this.modalService.show(template);
+  })
+}
+
+
  refreshLugares() {
    this.$lugarRefresh.next('');
  }
@@ -90,6 +109,15 @@ guardarLugar(){
     this.refreshLugares();
   }) 
 
+}
+
+confirmUpdate() {
+  this.lugarService.updateLugar(this.selectLugar)
+  .subscribe(res=>{
+    console.log(res);
+    this.modalRef?.hide();
+    this.refreshLugares();    
+  }) 
 }
 
 }
