@@ -1,0 +1,128 @@
+<div id="content" class="site-content">
+    <div class="page-header dtable text-center header-transparent pheader-team">
+        <div class="dcell">
+            <div class="container">
+                <h1 class="page-title">Single Team</h1>
+                <ul id="breadcrumbs" class="breadcrumbs none-style">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-team.html">Home</a></li>
+                    <li class="active">Our Team</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="single-team">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 text-center align-self-center mb-5 mb-lg-0">
+                <div class="team-member-img">
+                    <img src="http://templates.thememodern.com/theratio/images/image1-single-team.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="team-member-info">
+                    <h2>Cuenta</h2>
+                    <h5> [ Cliente ]</h5>
+                    <ul class="member-info">
+                        <li><span class="text-light">Nombre:</span><span id="txtNombre"> {{nombre}}</span><input
+                                type="text" class="form-control mb-1 d-none" [value]="nombre"
+                                placeholder="Ingresa el nuevo nombre" id="inputNombre"><button
+                                class="btn btn-sm btn-gray" id="btnEditar" (click)="VistaActualizaNombre()"><i
+                                    class="pi pi-pencil"></i></button><button class="btn btn-sm bg-warning d-none"
+                                id="btnActualizar">Actualizar</button></li>
+                        <li><span class="text-light">Apellido(s):</span> {{apellido}}</li>
+                        <li><span class="text-light">Mail:</span> {{mail}}</li>
+                        <li><span class="text-light">Usuario:</span> {{username}}</li>
+                    </ul>
+                    <div class="list-social">
+                        <ul>
+                            <li><a href="http://facebook.com" target="_self"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="http://twitter.com" target="_self"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="http://linkedin.com" target="_self"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="http://instagram" target="_self"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4 mt-5">
+            <div class="row">
+                <h3 class="col-8">Métodos de pago</h3>
+                <button type="button" class="btn btn-sm btn-success w-25 ml-auto text-white col-2 h-75" (click)="showDialog()"
+                    label="Show"><i class="pi pi-plus"></i>Agregar Nuevo</button>
+            </div>
+            <div class="row mt-3 py-3" *ngIf="$metodos | async as cards">
+                <div class="col-xs-12 col-sm-4" *ngFor="let card of cards.metodPago">
+                    <div class="card">
+                        <img class="col-7 mx-auto" src="../../../../assets/img/card.png">
+                        <div class="card-content mb-3">
+                            <h4 class=" text-center">{{card.banco}}</h4>
+                            <div class="row d-flex justify-content-around">
+                                <div class="col-6">
+                                    <p class="small mb-0">Número de tarjeta:</p>
+                                    <span>**** **** ****
+                                        {{card.numeroTarjeta!.substr(card.numeroTarjeta!.length-5)}}</span>
+                                </div>
+                                <div class="col-3">
+                                    <p class="small mb-0">Expira:</p>
+                                    <span>{{card.fechaVencimiento | date: 'MM/yy'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm bg-danger text-white" (click)="DeleteMetodoPago(card._id)"><i class="pi pi-trash"></i>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4 mt-5">
+            <h3>Datos Facturación</h3>
+            <button type="button" class="btn btn-sm btn-success w-25 ml-auto text-white" (click)="showDialog()"
+                label="Show"><i class="pi pi-plus"></i>Agregar Nuevo</button>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 mt-3 pt-2" *ngFor="let card of metodosPago">
+                    <div class="card text-center">
+                        <div class="card-header">Dato de Facturación</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            2 days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="display" [style]="{width: '50vw'}">
+    <ng-template pTemplate="header" class="text-center">
+        Nuevo método de pago.
+    </ng-template>
+    <div class="row border-top pt-4">
+        <div class="col-6">
+            <label for="card" class="form-label">Número de tarjeta</label>
+            <input type="text" id="card" class="form-control" placeholder="0000 0000 0000 0000"
+                [(ngModel)]="metodoPago.numeroTarjeta">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Banco</label>
+            <input type="text" id="card" class="form-control" placeholder="Entidad bancaria"
+                [(ngModel)]="metodoPago.banco">
+        </div>
+        <div class="col-6">
+            <label for="card" class="form-label">Vencimiento</label>
+            <input type="text" id="card" class="form-control" placeholder="2022-06"
+                [(ngModel)]="metodoPago.fechaVencimiento">
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button (click)="display=false" class="btn btn-sm btn-danger text-white">Cerrar</button>
+        <button (click)="CrearMetodoPago()" class="btn btn-sm btn-success text-white">Registrar</button>
+    </ng-template>
+</p-dialog>
+<p-toast></p-toast>

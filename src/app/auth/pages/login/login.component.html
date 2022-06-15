@@ -5,14 +5,15 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="name">Usuario</label>
-              <input type="text" [(ngModel)]="user.username" class="form-control" id="username" placeholder="Nombre(s)">
+              <input type="text" [(ngModel)]="user.username" class="form-control" id="username" placeholder="Usuario">
             </div>
             <div class="form-group col-md-6">
-              <label for="apellidos">Apellido(s)</label>
-              <input type="password" [(ngModel)]="user.password" class="form-control" id="apellidos" placeholder="Apellido(s)">
+              <label for="apellidos">Contraseña</label>
+              <input type="password" [(ngModel)]="user.password" class="form-control" id="apellidos" placeholder="Contraseña">
             </div>
           </div>
-          <button type="submit" class="btn btn-success" (click)="login()">Registrarme</button>
+          <button type="submit" class="btn btn-success" (click)="login()">Iniciar Sesión</button>
       </div>
     </div>
   </div>
+<p-toast></p-toast>

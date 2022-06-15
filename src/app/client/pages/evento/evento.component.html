@@ -1,0 +1,74 @@
+<div id="content" class="site-content">
+    <div class="page-header dtable text-center header-transparent pheader-faq">
+        <div class="dcell">
+            <div class="container">
+                <h1 class="page-title">Detalles Evento</h1>
+                <ul id="breadcrumbs" class="breadcrumbs none-style">
+                    <li><a routerLink="/">Homre</a></li>
+                    <li><a routerLink="/eventos">Eventos</a></li>
+                    <li class="active">{{nombreEvento}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="shop-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0 text-center align-self-center">
+                <div class="product-slide">
+                    <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="summary entry-summary">
+                    <h2 class="single-product-title">{{nombreEvento}}</h2>
+                    <div class="single-product-rating">
+                        <div class="star-rating">
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                        </div>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque rerum amet consequuntur placeat blanditiis tenetur totam deleniti quasi exercitationem dicta harum, quibusdam, voluptatum veniam magnam facere provident illum qui molestias..</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque rerum amet consequuntur placeat blanditiis tenetur totam deleniti quasi exercitationem dicta harum, quibusdam, voluptatum veniam magnam facere provident illum qui molestias.Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque rerum amet consequuntur placeat blanditiis tenetur totam deleniti quasi exercitationem dicta harum, quibusdam, voluptatum veniam magnam facere provident illum qui molestias.</p>
+                    <form class="cart" method="post">
+                        <div class="row mb-4">
+                            <div class="col-4" *ngFor="let seccion of listaSecciones; let i = index">
+                                <h6>{{seccion.nombre}}</h6>
+                                <p>{{seccion.precioUnitario | currency}}</p>
+                                <label class="form-label small" for="qtySecc{{i}}">Cantidad:</label>
+                                <input class="form-control border" type="number" id="qtySecc{{i}}" value="0" min="0" max="{{seccion.numAsientos}}">
+                            </div>
+                        </div>
+                        <button type="button" name="add-to-cart"
+                            class="octf-btn single_add_to_cart_button button alt mb-3" (click)="Checkout()">Checkout</button>
+                    </form>
+                    <div class="product_meta">
+                        <span class="sku_wrapper mt-3">SKU: <span class="sku">{{_id}}</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space-70"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ot-tabs tab-single-product text-center">
+                    <ul class="tabs-heading unstyle">
+                        <li class="tab-link current" data-tab="tab-1">Descripción</li>
+                    </ul>
+                    <div id="tab-1" class="tab-content current">
+                        <p>With its gentle round edges, high reclined back and sumptuous padding, the foam-filled seat
+                            cushion invites you to relax and wind down in style. This elegant and luxurious design is
+                            finished with brass coloured metal legs for a contemporary, lighter-than-air look, which
+                            makes it ideal for smaller spaces. Exclusive to Habitat and available in a choice of
+                            colours, the Celine chair is upholstered in durable polyester velvet and its seat cushion
+                            has piping to maintain.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

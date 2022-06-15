@@ -10,6 +10,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CalendarModule} from 'primeng/calendar';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {DialogModule} from 'primeng/dialog';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   imports: [
@@ -24,7 +26,9 @@ import {MessageModule} from 'primeng/message';
     InputTextModule,
     CalendarModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    DialogModule,
+    ToastModule
   ],
   providers: [BsModalService]
 })
