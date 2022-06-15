@@ -1,71 +1,83 @@
-<!-- <div class="card" *ngIf="$users | async as users1"> -->
-    <h2 class="card-title">
-        Tus eventos:
-    </h2>
-<div class="card">
+<h2 class="card-title">
+    Tus eventos:
+</h2>
+<div class="card" *ngIf="$eventos | async as eventos">
+
     <div class="card-header d-flex justify-content-end">
-        <p-button icon="pi pi-plus-circle" iconPos="left" label="Crear" (onClick)="createEvent(create)">
-        </p-button>
-      </div>
-    <!-- <p-table [value]="users1.usersList"> -->
-    <p-table>
-    <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="userName">UserName<p-sortIcon field="userName"></p-sortIcon></th>
-                <th pSortableColumn="mail">Email<p-sortIcon field="mail"></p-sortIcon></th>
-                <th >Edit</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-user>
-            <tr [ngClass]="{'bg-danger':user.status == false}">
-                <td>{{user.userName}}</td>
-                <td>{{user.mail}}</td>
-                <td >
-                    <!-- <a (click)="toogleUSer(user._id,user.status)">
+        <p-button icon="pi pi-plus-circle" iconPos="left" label="Crear" (onClick)="createEventModal(create)">
+            </p-button>
+        </div>
+        <p-table [value]="eventos.eventosList">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="nombreEvento">Nombre<p-sortIcon field="nombreEvento"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fecha">Fecha<p-sortIcon field="fecha"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="status">Estatus<p-sortIcon field="status"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-evento>
+                <!-- <tr [ngClass]="{'bg-danger':user.status == false}"> -->
+                <tr>
+                    <td>{{evento.nombreEvento}}</td>
+                    <td>{{evento.fecha | date}}</td>
+                    <td>
+                        <a [routerLink]="['../eventos',evento._id]">
+                            Se requiere completar informacion
+                            <i class="pi pi-arrow-right"></i>
+                        </a> 
+                    </td>
+                    <!-- <td>{{user.mail}}</td> -->
+                    <!-- <td> -->
+                        <!-- <a (click)="toogleUSer(user._id,user.status)">
                         <i class="mr-2 nc-icon nc-tap-01"></i>
                     </a>
                     <a (click)="updateUser(update,user._id)" >
                         <i class="nc-icon nc-settings-gear-64"></i>
                     </a> -->
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+                    <!-- </td> -->
+                </tr>
+            </ng-template>
+        </p-table>
+    
 </div>
-
-<ng-template #create>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Crear evento</h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-          <i class="pi pi-times"></i>
-        </button>
-      </div>
-      <div class="modal-body modal-xlg mt-3">
-        <div class="row mb-4">
-            <div class="col-6">
-                <span class="p-float-label">
-                    <input id="float-input" type="text" pInputText> 
-                    <label for="float-input">Nombre</label>
-                </span>
+        <ng-template #create>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Crear evento</h4>
+                <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                    <i class="pi pi-times"></i>
+                </button>
             </div>
-            <div class="col-6">
-                <span class="p-float-label">
-                    <p-calendar  [minDate]="today" [maxDate]="maxDate" [showIcon]="true" icon="pi pi-calendar"></p-calendar>
-                    <label for="float-input">Fecha</label>
-                </span>
-            </div>
-        </div>
-        <div class="container m-3">
-            <form >
-                <div class="row justify-content-end mr-1">
-                    <button (click)="modalRef?.hide()" class="col-3 mr-1 btn btn-danger">
-                        Cancelar
-                    </button>
-                    <button class="col-3 btn btn-success" >
-                        Crear
-                    </button>
+            <div class="modal-body modal-xlg mt-3">
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <span class="p-float-label">
+                            <input [(ngModel)]="newEvent.nombreEvento" id="float-input" type="text" pInputText>
+                            <label for="float-input">Nombre</label>
+                        </span>
+                    </div>
+                    <div class="col-6">
+                        <span class="p-float-label">
+                            <p-calendar [(ngModel)]="newEvent.fecha" [minDate]="today" [maxDate]="maxDate"
+                                [showIcon]="true" icon="pi pi-calendar"></p-calendar>
+                            <label for="float-input">Fecha</label>
+                        </span>
+                    </div>
                 </div>
-            </form>
-        </div>
-      </div>
-</ng-template>
+                <div class="container m-3">
+
+                    <div class="row justify-content-end mr-1">
+                        <button (click)="modalRef?.hide()" class="col-3 mr-1 btn btn-danger">
+                            Cancelar
+                        </button>
+                        <button (click)="createEvent()" class="col-3 btn btn-success">
+                            Crear
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </ng-template>
+        <p-toast></p-toast>
