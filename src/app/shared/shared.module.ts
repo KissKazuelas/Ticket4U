@@ -12,6 +12,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {DialogModule} from 'primeng/dialog';
 import {ToastModule} from 'primeng/toast';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import {ToastModule} from 'primeng/toast';
     MessagesModule,
     MessageModule,
     DialogModule,
-    ToastModule
+    ToastModule,
+    DropdownModule
   ],
   providers: [BsModalService]
 })

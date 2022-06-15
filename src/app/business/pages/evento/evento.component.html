@@ -1,18 +1,87 @@
 <h2 class="card-title">
     Editar Evento:
 </h2>
-<div class="row mb-4">
-    <!-- <div class="col-6">
-        <span class="p-float-label">
-            <input [(ngModel)]="newEvent.nombreEvento" id="float-input" type="text" pInputText>
-            <label for="float-input">Nombre</label>
-        </span>
+<div *ngIf="evento">
+    <div class="row">
+        <div class="col-6">
+            <h3 class="mb-5">Datos Generales:</h3>
+            <div class="p-fluid row mb-5">
+                <div class="col-7">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="evento.nombreEvento" id="float-input" type="text" pInputText>
+                        <label for="float-input">Nombre del evento</label>
+                    </span>
+                </div> 
+            </div>   
+            <div class="p-fluid row mb-5">
+                <div class="col-7">
+                    <span class="p-float-label" *ngIf="$lugares | async as lugares">
+                        <p-dropdown [options]="lugares.lugaresList" [(ngModel)]="evento.lugarEvento" optionLabel="nombre"  optionValue="_id"></p-dropdown>
+                        <label for="float-input">Lugar</label>
+                    </span>    
+                </div>  
+            </div>  
+            <div class="p-fluid row mb-5">
+                <div class="col">
+                    <span class="p-float-label">
+                        <p-calendar [(ngModel)]="evento.fecha" [minDate]="today" [maxDate]="maxDate"
+                            icon="pi pi-calendar" [showTime]="true" [inline]="true" ></p-calendar>
+                        <label for="float-input">Fecha</label>
+                    </span>    
+                </div>  
+            </div>   
+            
+        </div>
+        <div class="col-6">
+            <h3 class="mb-5">Secciones:</h3>
+            <div class="p-fluid row mb-5">
+                <div class="col-4">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="seccion.nombre" id="float-input" type="text" pInputText>
+                        <label for="float-input">Nombre</label>
+                    </span>
+                </div> 
+                <div class="col-4">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="seccion.numAsientos" id="float-input" type="number" pInputText>
+                        <label for="float-input">Numero de asientos</label>
+                    </span>
+                </div> 
+                <div class="col-4">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="seccion.precioUnitario" id="float-input" type="number" pInputText>
+                        <label for="float-input">Precio Unitario</label>
+                    </span>
+                </div> 
+            </div>
+            <p-button icon="pi pi-plus-circle" iconPos="left" label="Crear" (onClick)="createSeccion()">
+            </p-button>
+            <p-table *ngIf="$secciones | async as secciones" [value]="secciones.seccionesList" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Asientos</th>
+                        <th>Precio Unitario</th>
+                        <th>Delete</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-seccion>
+                    <tr>
+                        <td>{{seccion.nombre}}</td>
+                        <td>{{seccion.numAsientos}}</td>
+                        <td>{{seccion.precioUnitario}}</td>
+                        <td><i (click)="deleteSeccion(seccion._id)" class="text-color-danger pi pi-times-circle"></i></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
     </div>
-    <div class="col-6">
-        <span class="p-float-label">
-            <p-calendar [(ngModel)]="newEvent.fecha" [minDate]="today" [maxDate]="maxDate"
-                [showIcon]="true" icon="pi pi-calendar"></p-calendar>
-            <label for="float-input">Fecha</label>
-        </span>
-    </div> -->
+    <div class="row justify-content-end">
+        <p-button icon="pi pi-plus-circle" iconPos="left" label="Actualizar" (onClick)="updateEvento()">
+        </p-button>
+    </div>
+    
 </div>
+
+       

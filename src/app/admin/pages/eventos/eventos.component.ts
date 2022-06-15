@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LugarService } from '../../services/lugar.service';
 
 @Component({
   selector: 'app-eventos',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
-  constructor() { }
+  $lugares?: Observable<any>;
+  selectedLugar : string = '';
+
+  constructor(private lugarService : LugarService) { }
 
   ngOnInit(): void {
+    this.$lugares=this.lugarService.getLugares('');
+  }
+  generarReporte(){
+    
   }
 
 }

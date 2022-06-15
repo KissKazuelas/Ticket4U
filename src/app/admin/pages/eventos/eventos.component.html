@@ -1,3 +1,17 @@
-<p>eventos works!</p>
-<button pButton type="button" label="Click" ></button>
-<mat-slider min="1" max="100" step="1" value="50"></mat-slider>
+<h1>Reporte por Lugar</h1>
+
+    
+        <div class="p-fluid row my-5">
+            <div class="col-3">
+                <span class="p-float-label" *ngIf="$lugares | async as lugares">
+                    <p-dropdown [options]="lugares.lugaresList" [(ngModel)]="selectedLugar" optionLabel="nombre"  optionValue="_id"></p-dropdown>
+                    <label for="float-input">Lugar</label>
+                </span>    
+            </div>  
+        </div> 
+        <div class="p-fluid row my-5">
+            <div class="col-2">
+                <p-button icon="pi pi-file" iconPos="left" label="Generar" (onClick)="generarReporte()">
+                </p-button>
+            </div>
+        </div> 

@@ -8,6 +8,8 @@ import { ActivatedRouteSnapshot, Route } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { WebsocketService } from '../../../shared/Services/websocket.service';
+import * as XLSX from 'xlsx';
+import { FileSaverService } from 'ngx-filesaver';
 
 @Component({
   selector: 'app-eventos',
@@ -40,7 +42,7 @@ export class EventosComponent implements OnInit {
     private eventosService: EventoService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
-    private webSocket : WebsocketService
+    private filerSaver : FileSaverService 
   ) {
 
   }
@@ -53,9 +55,6 @@ export class EventosComponent implements OnInit {
     this.$eventos = this.$eventosRefresh.pipe(
       switchMap(() => this.eventosService.getEventos(this.jwt ? this.jwt : ''))
     )
-    this.webSocket.lsiten('messages').subscribe((data)=>{
-      this.showConfirm(data);
-    })
   } 
 
   showConfirm(message: any) {
@@ -70,7 +69,8 @@ export class EventosComponent implements OnInit {
     this.newEvent.organizador_jwt = this.jwt ? this.jwt : '';
     this.eventosService.createEvent(this.newEvent)
       .subscribe(res => {
-        console.log(res);
+      this.showConfirm('Se ha creado con exito');
+      this.$eventosRefresh.next('');
         this.modalRef?.hide();
       });
   }
@@ -80,6 +80,57 @@ export class EventosComponent implements OnInit {
       organizador_jwt: '',
       fecha: ''
     }
+  }
+
+  exportExcel(uid: string){
+    const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const EXCEL_EXTENSION = '.xlsx';
+    let data: any = [];
+    // data.push({
+    //   nombre: 'abc',
+    //   number:123,
+    //   test:'12as'
+    // })
+    // data.push({
+    //   nombre: 'abc',
+    //   number:123,
+    //   test:'12as'
+    // })
+    // data.push({
+    //   nombre: 'abc',
+    //   number:123,
+    //   test:'12as'
+    // })
+    this.eventosService.getReporteEvento(uid)
+    .subscribe(res=>{
+      for (let i of res.listaBoletos) {
+        data.push({
+          num_asiento: i.datosBoleto.num_asiento,
+          nombre: i.datosFacturacion.nombre,
+          regimenFiscal: i.datosFacturacion.regimenFiscal,
+          calle: i.datosFacturacion.calle,
+          codigoPostal: i.datosFacturacion.codigoPostal,
+          colonia: i.datosFacturacion.colonia,
+          ciudad: i.datosFacturacion.ciudad,
+          estado: i.datosFacturacion.estado,
+          RFC: i.datosFacturacion.RFC,
+          razonSocial: i.datosFacturacion.razonSocial,
+          banco:  i.datosMetodoPago.banco
+        })
+      }
+      const worksheet = XLSX.utils.json_to_sheet(data);
+    const worbook = {
+      Sheets:{
+        'testingSheet':worksheet
+      },
+      SheetNames:['testingSheet']
+    }
+
+    const excelBuffer = XLSX.write(worbook,{bookType:'xlsx',type:'array'});
+    const blobData = new Blob([excelBuffer],{type:EXCEL_TYPE});
+    this.filerSaver.save(blobData,'Reporte.xlsx')
+    });
+    
   }
 
 

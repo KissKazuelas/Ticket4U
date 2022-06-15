@@ -16,6 +16,7 @@
                     </th>
                     <th pSortableColumn="status">Estatus<p-sortIcon field="status"></p-sortIcon>
                     </th>
+                    <th >Reporte</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-evento>
@@ -23,11 +24,18 @@
                 <tr>
                     <td>{{evento.nombreEvento}}</td>
                     <td>{{evento.fecha | date}}</td>
-                    <td>
+                    <td>{{evento._id}}</td>
+                    <td *ngIf="evento.status!='ACTIVE'">
                         <a [routerLink]="['../eventos',evento._id]">
                             Se requiere completar informacion
                             <i class="pi pi-arrow-right"></i>
                         </a> 
+                    </td>
+                    <td *ngIf="evento.status=='ACTIVE'">
+                            <i class="pi pi-check"></i>
+                    </td>
+                    <td>
+                        <i (click)="exportExcel(evento._id)" class="pi pi-file"></i>
                     </td>
                     <!-- <td>{{user.mail}}</td> -->
                     <!-- <td> -->
