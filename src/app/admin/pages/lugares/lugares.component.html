@@ -1,0 +1,85 @@
+
+
+<div class="card" *ngIf="$lugares | async as lugares1">    
+    
+    <p-table [value]="lugares1.lugaresList"> 
+    <ng-template pTemplate="header">
+    
+        <tr>
+                <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>        
+                <th pSortableColumn="ciudad">Ciudad<p-sortIcon field="ciudad"></p-sortIcon></th>        
+                <th pSortableColumn="calle">Calle<p-sortIcon field="calle"></p-sortIcon></th>
+                <th pSortableColumn="estado">Estado<p-sortIcon field="estado"></p-sortIcon></th>    
+                
+                <th >Edit</th>
+            </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-lugar>       
+                <tr [ngClass]="{'bg-danger':lugar.status == false}">
+                <td>{{lugar.nombre}}</td>
+                <td>{{lugar.ciudad}}</td>
+                <td>{{lugar.calle}}</td>
+                <td>{{lugar.estado}}</td>
+               
+            </tr>
+                   
+        </ng-template>
+    </p-table>
+
+    <button (click)="createLugar(create)">Agregar</button>
+
+</div>
+
+<ng-template #create>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Crear Lugar</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-xlg mt-3">
+        <div class="row mb-4">
+            <div class="col-6">
+                <span class="p-float-label">
+                    <input id="float-input" type="text" pInputText [(ngModel)]="selectLugar.nombre"> 
+                    <label for="float-input">Nombre</label>
+                </span>
+            </div>
+            <div class="col-6">
+                <span class="p-float-label">
+                    <input id="float-input" type="text" pInputText [(ngModel)]="selectLugar.estado"> 
+                    <label for="float-input">Estado</label>
+                </span>
+            </div>
+            <div class="col-6">
+                <span class="p-float-label">
+                    <input id="float-input" type="text" pInputText [(ngModel)]="selectLugar.ciudad"> 
+                    <label for="float-input">Ciudad</label>
+                </span>
+            </div>
+            <div class="col-6">
+                <span class="p-float-label">
+                    <input id="float-input" type="text" pInputText [(ngModel)]="selectLugar.calle"> 
+                    <label for="float-input">Calle</label>
+                </span>
+            </div>
+        </div>
+        <div class="container m-3">
+            <form >
+                <div class="row justify-content-end mr-1">
+                    <button (click)="modalRef?.hide()" class="col-3 mr-1 btn btn-danger">
+                        Cancelar
+                    </button>
+                    <button (click)="guardarLugar()" class="col-3 btn btn-success" >
+                        Crear
+                    </button>
+                </div>
+            </form>
+        </div>
+        </div>        
+</ng-template>      
+
+
+
+
